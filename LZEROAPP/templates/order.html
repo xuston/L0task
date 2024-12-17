@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        .order-container { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: #f9f9f9; }
+        .order-item { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Order Details</h1>
+    {{if .}}
+    <div class="order-container">
+        <p><strong>Order UID:</strong> {{.Order_uid}}</p>
+        <p><strong>Track Number:</strong> {{.Track_number}}</p>
+        <p><strong>Customer Name:</strong> {{.Delivery.Name}}</p>
+        <p><strong>Phone:</strong> {{.Delivery.Phone}}</p>
+        <p><strong>Address:</strong> {{.Delivery.Address}}, {{.Delivery.City}}, {{.Delivery.Region}}</p>
+        <p><strong>Amount:</strong> {{.Payment.Amount}} {{.Payment.Currency}}</p>
+        <h3>Items:</h3>
+        {{range .Items}}
+        <div class="order-item">
+            <p><strong>Item:</strong> {{.Name}}</p>
+            <p><strong>Price:</strong> {{.Price}}</p>
+            <p><strong>Brand:</strong> {{.Brand}}</p>
+        </div>
+        {{end}}
+    </div>
+    {{else}}
+    <p>Order not found</p>
+    {{end}}
+</body>
+</html>
